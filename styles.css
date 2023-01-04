@@ -15,12 +15,13 @@ h1 {
 li {
   display: flex;
   justify-content: space-between;
+  border: 1px solid black;
+  margin: 0 5px 5px 0;
 }
 
 #taskContainer {
   list-style-type: none;
   padding-inline-start: 0;
-  border: 1px solid black;
 }
 
 #inputContainer {
