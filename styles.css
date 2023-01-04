@@ -1,0 +1,42 @@
+body {
+  box-sizing: border-box;
+}
+
+section {
+  width: 300px;
+  margin: auto;
+  margin-top: 100px;
+}
+
+h1 {
+  text-align: center;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+}
+
+#taskContainer {
+  list-style-type: none;
+  padding-inline-start: 0;
+  border: 1px solid black;
+}
+
+#inputContainer {
+  display: flex;
+  gap: 5px;
+}
+
+#addInput {
+  flex: 1;
+}
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.removeButton {
+  border: none;
+  background: none;
+}
