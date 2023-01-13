@@ -26,7 +26,6 @@ h1 {
   width: auto;
   height: auto;
   color: white;
-  padding: 5px;
   border-radius: 10px;
   background-color: lightgray;
 }
@@ -45,6 +44,7 @@ li {
 span {
   font-size: large;
   color: black;
+  text-align: left;
 }
 
 .delButton {
@@ -62,10 +62,3 @@ span {
   position: relative;
   right: 270px;
 }
-
-/*
-Note to self:
-
-  Keep the big stuff like section and body limited on content
-  dont use "display: flex" on section, taskContainer
-*/

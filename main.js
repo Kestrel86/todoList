@@ -3,11 +3,13 @@ const button = document.getElementById("addButton");
 let input = document.getElementById("addInput");
 
 let checkBox = document.createElement("input");
-checkBox.type="checkbox";
+checkBox.setAttribute("type","checkbox");
 
 let delButton = document.createElement("button");
 delButton.classList.add("delButton");
 delButton.innerText = "X";
+
+input.focus();
 
 button.addEventListener("click", function(event) {
   event.preventDefault();
@@ -46,9 +48,22 @@ function addInput() {
   span.appendChild(text);
   taskContainer.appendChild(listEl);
 
+  taskContainer.style.padding = "5px";
+
   delButton.addEventListener("click", function(event) {
     event.preventDefault();
     taskContainer.removeChild(listEl);
+    if(taskContainer.children.length <= 0) {
+      taskContainer.style.padding = "0px"; 
+    }
+  });
+
+  checkBox.addEventListener("change", function() {  
+    if(checkBox.checked == true) {
+      span.style.textDecoration = "line-through"
+    } else {
+      span.style.textDecoration = "none";
+    }
   });
 
   listEl.appendChild(delButton);
@@ -57,15 +72,3 @@ function addInput() {
   input.value = ""
 };
 
-/*
-Notes:
-Create an alert based on incorrect messages
-
-Create a ul list for the inputs to be stored
-
-span - for inline styling, comparable to div but not block
-
-preventDefault() prevents the site from resetting
-
-Tried to use focus to make life easier, resorted to alert being called consistently
-*/
