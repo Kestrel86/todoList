@@ -1,70 +1,71 @@
-const input = document.getElementById("addInput");
+let taskContainer = document.getElementById("taskContainer");
 const button = document.getElementById("addButton");
-const taskContainer = document.getElementById("taskContainer");
+let input = document.getElementById("addInput");
 
-button.addEventListener("click", addButton);
+let checkBox = document.createElement("input");
+checkBox.type="checkbox";
 
-function addTask(content) 
-{
-  const leftContainer = document.createElement("div");
-  const rightContainer = document.createElement("div");
-  const list = document.createElement("li");
-  const textBox = document.createElement("span");
+let delButton = document.createElement("button");
+delButton.classList.add("delButton");
+delButton.innerText = "X";
 
-  const checkBox = document.createElement("input");
-  //checkBox.type = "checkbox";
-  checkBox.setAttribute("type", "checkbox");
-  checkBox.style.cursor = "pointer";
-
-  const removeButton = document.createElement("button");
-  removeButton.classList.add("removeButton");
-  removeButton.innerText = "X";
-  removeButton.style.cursor = "pointer";
-
-  textBox.innerText = content;
-
-  checkBox.addEventListener("click", strikeCheckBox);
-
-  removeButton.addEventListener("click", removeItem);
-
-  leftContainer.appendChild(checkBox);
-  leftContainer.appendChild(textBox);
-  rightContainer.appendChild(removeButton);
-
-  list.appendChild(leftContainer);
-  list.appendChild(rightContainer);
-
-  taskContainer.appendChild(list);
-
-  function strikeCheckBox() 
-  {
-   if(!textBox.classList.contains("strikethrough")) {
-    textBox.classList.add("strikethrough");
-   } else if (textBox.classList.contains("strikethrough")) {
-    textBox.classList.remove("strikethrough");
-   }
-  }
-
-  function removeItem() 
-  {
-    taskContainer.removeChild(list);
-    input.focus();
-  }
-
-}
-
-function addButton(event)
-{
+button.addEventListener("click", function(event) {
   event.preventDefault();
-
-  const userInput = input.value;
-  if(userInput.length == 0) 
-  {
-    alert("No Input Given");
-    return;
+  if(input.value == "" || input.value == " ") {
+    alert("Please Add An Input");
+  } else {
+    addInput();
   }
+});
 
-  addTask(userInput);
-  input.value = "";
-}
+input.addEventListener("keyup", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    if(input.value == "" || input.value == " ") {
+      console.log(); //To prevent the alert message from popping up when there is an input and to avoid double input
+    } else {
+      addInput();
+    }
+  }
+});
 
+function addInput() {
+  let span = document.createElement("SPAN");
+  let listEl = document.createElement("li");
+  let userInput = input.value;
+
+  let checkBox = document.createElement("input");
+  checkBox.type="checkbox";
+  checkBox.classList.add("checkBox");
+
+  let delButton = document.createElement("button");
+  delButton.classList.add("delButton");
+  delButton.innerText = "X";
+  
+  let text = document.createTextNode(userInput);
+  span.appendChild(text);
+  taskContainer.appendChild(listEl);
+
+  delButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    taskContainer.removeChild(listEl);
+  });
+
+  listEl.appendChild(delButton);
+  listEl.appendChild(span);
+  listEl.appendChild(checkBox);
+  input.value = ""
+};
+
+/*
+Notes:
+Create an alert based on incorrect messages
+
+Create a ul list for the inputs to be stored
+
+span - for inline styling, comparable to div but not block
+
+preventDefault() prevents the site from resetting
+
+Tried to use focus to make life easier, resorted to alert being called consistently
+*/
